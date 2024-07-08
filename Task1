@@ -1,0 +1,105 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+
+class Location{
+	public:
+		std::string name;
+		double latitude;
+		double longitude;
+		
+		void addLocation(std::string locName, double lat, double lon){
+			name=locName;
+			latitude=lat;
+			longitude=lon;
+		}
+		
+		void removeLocation(){
+			name="";
+			latitude=0.0;
+			longitude=0.0;
+			
+		}
+		void listLocations(){
+			std::cout<<"Location: "<<name<<std::endl;
+			std::cout<<"Latitude: "<<latitude<<std::endl;
+			std::cout<<"Longitude: "<<longitude<<std::endl;
+		}
+};
+class WeatherVariable{
+	public:
+		double temperature;
+		double windspeed;
+		void setWeather(double temp,double wind){
+			temperature=temp;
+			windspeed=wind;
+		}
+};
+
+class WeatherForecastingSystem{
+	public:
+		void getWeatherForecast(std::string location){
+			
+		}
+		void parseWeatherData(){
+			
+		}
+		void displayWeatherForecast(){
+			
+		}
+};
+class HistoricalWeatherSystem{
+	public:
+		void getHistoricalWeatherData(std::string location){
+			
+		}
+		void displayHistoricalWeatherData(){
+			
+		}
+};
+class DataExporter{
+	public:
+		void exportToCSV(std::vector<std::string>data){
+			std::ofstream file("weather_data.csv");
+			for(const auto& entry: data){
+				file<<entry<<std::endl;
+		}
+		file.close();
+		}
+		void exportToJSON(std::vector<std::string>data){
+				std::ofstream file("weather_data.json");
+				for(const auto& entry:data){
+				file<<entry<<std::endl;	
+				}
+				file.close();	
+		}
+};
+int main()
+{
+	Location loc;
+	loc.addLocation("New York",40.7128,-74.0060);
+	loc.listLocations();
+	
+	WeatherVariable weather;
+	weather.setWeather(25.5,10.2);
+	
+	WeatherForecastingSystem weatherSystem;
+    weatherSystem.getWeatherForecast("New York");
+	weatherSystem.parseWeatherData();
+	weatherSystem.displayWeatherForecast();
+	
+	HistoricalWeatherSystem historicalWeatherSystem;
+	  historicalWeatherSystem.getHistoricalWeatherData("New York");
+      historicalWeatherSystem.displayHistoricalWeatherData();
+    
+    DataExporter exporter;
+    std::vector<std::string>weatherData= {"Data1", "Data2", "Data3"};
+    exporter.exportToCSV(weatherData);
+     exporter.exportToJSON(weatherData);
+     return 0;
+}
+
+OUTPUT
+ location  New York
+ Latitude  40.7128
+ longitude -74.008
