@@ -1,0 +1,121 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+class Contacts{
+    public:
+    string name;
+    string phoneNumber;
+
+};
+
+void addContact(vector<Contacts>& contacts)
+{
+   Contacts newContact;
+    cout<<"Name ";
+    cin.ignore();
+    getline(cin, newContact.name);
+    cout<<"Phone Number ";
+    getline(cin, newContact.phoneNumber);
+    contacts.push_back(newContact);
+    cout<<"Contacts Added Successfully!"<<endl;
+
+}
+void viewContacts(const vector<Contacts>& contacts){
+    if(contacts.empty()){
+        cout<<"No Contact Found!"<<endl;
+        return;
+
+    }
+    cout<<"Contacts List"<<endl;
+    for(int i=0;i<contacts.size();++i){
+        cout<<" Name: "<<contacts[i].name<<endl;
+        cout<<" Phone: "<<contacts[i].phoneNumber<<endl;
+    }
+}
+void deleteContact( vector<Contacts>& contacts){
+   
+		if (contacts.empty())
+	{
+		cout<<"\n * NO CONTACT FOUND! * ";
+		return;
+	}
+	string name;
+	cout<<"\n ENTER NAME OF  CONTACT TO DELETE: ";
+	getline(cin,name);
+	int itd=-1;
+	for(int i=0;i<contacts.size();++i)
+	{
+		if (contacts[i].name==name)
+		{
+			itd=i; break;
+		}
+	}
+	if (itd != -1)
+		{
+		contacts.erase(contacts.begin() + itd);	
+		cout<<"\n * CONTACTS DELETED SUCCESSFULLY * ";
+		}
+		else
+			cout<<"\n * NO CONTACT FOUND! * ";
+
+}
+
+void displayMenu(){
+    cout<<"1. Add\n2. View\n3. Delete\n4. exit\nChoice:";
+}
+int main(){
+    vector<Contacts> contacts;
+    int choice;
+    while(true){
+        displayMenu();
+        cin>>choice;
+        switch(choice){
+            case1:
+            addContact(contacts);
+            break;
+            case2:
+            viewContacts(contacts);
+            break;
+            case3:
+            deleteContact(contacts);
+            break;
+            case4:
+            cout<<"Good Bye!"<<endl;
+            return 0;
+            default:
+            cout<<"Invalid Try Again."<<endl;
+        }
+    }
+    return 0;
+}
+OUTPUT:
+1. Add
+2. View
+3. Delete
+4. Exit
+Choice: 1
+Name: Aimen
+Phone: 03005254768
+Added.
+1. Add
+2. View
+3. Delete
+4. Exit
+Choice: 2
+List:
+Name: Aimen, Phone: 03005254768
+1. Add
+2. View
+3. Delete
+4. Exit
+Choice: 3
+Delete name: Aimen
+Deleted.
+1. Add
+2. View
+3. Delete
+4. Exit
+Choice: 4
+Good Bye!
